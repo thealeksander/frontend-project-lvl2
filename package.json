@@ -20,7 +20,7 @@
     "url": "https://github.com/thealeksander/frontend-project-lvl2/issues"
   },
   "homepage": "https://github.com/thealeksander/frontend-project-lvl2#readme",
-  "devDependencies": {
+  "dependencies": {
     "commander": "^9.4.0"
   }
 }
