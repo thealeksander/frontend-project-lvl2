@@ -1,14 +1,22 @@
 import { cwd } from 'node:process';
 import { fs } from 'fs';
 import { path } from 'path';
+import parser from './parser';
+import compare from './compare';
 
-const gendiff = (pathsFiles) => {
-  const readFiles = pathsFiles.map((pathFile) => {
-    const absolutePath = path.resolve(pathFile, cwd());
+const gendiff = (file1, file2) => {
+  const readFile = (file) => {
+    const absolutePath = path.resolve(file, cwd());
     const data = fs.readFileSync(absolutePath);
     return data;
-  });
+  };
 
-  const getFormat = (pathFile) => path.extname(pathFile);
-  
+  const getFormat = (file) => path.extname(file);
+
+  const objectFile1 = parser(getFormat(file1), readFile(file1));
+  const objectFile2 = parser(getFormat(file2), readFile(file2));
+
+  return compare(objectFile1, objectFile2);
 };
+
+export default gendiff;
