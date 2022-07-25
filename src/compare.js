@@ -4,8 +4,8 @@ import _ from 'lodash';
 const compare = (obj1, obj2) => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
-
-  const uniqKeys = _.uniq(...keys1, ...keys2);
+  const keys = [...keys1, ...keys2];
+  const uniqKeys = _.uniq(keys);
 
   const result = uniqKeys.reduce((acc, key) => {
     const valueObj1 = obj1[key];
@@ -22,11 +22,11 @@ const compare = (obj1, obj2) => {
     }
 
     if (valueObj1 === undefined) {
-      acc += `- ${key}: ${valueObj2}\n`;
+      acc += `+ ${key}: ${valueObj2}\n`;
       return acc;
     }
-    acc += `  - ${key}: ${valueObj1}\n`;
-    acc += `  + ${key}: ${valueObj2}\n`;
+    acc += `- ${key}: ${valueObj1}\n`;
+    acc += `+ ${key}: ${valueObj2}\n`;
     return acc;
   }, '');
   return result;

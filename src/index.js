@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { cwd } from 'node:process';
 import * as fs from 'node:fs';
 import * as path from 'path';
@@ -17,7 +16,7 @@ const gendiff = (file1, file2) => {
   const objectFile1 = parser(getFormat(file1), readFile(file1));
   const objectFile2 = parser(getFormat(file2), readFile(file2));
 
-  return `\n{${compare(objectFile1, objectFile2)}}`;
+  return `{\n${compare(objectFile1, objectFile2)}}`;
 };
 
 export default gendiff;
