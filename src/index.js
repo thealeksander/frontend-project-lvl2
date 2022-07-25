@@ -1,8 +1,8 @@
 import { cwd } from 'node:process';
-import { fs } from 'fs';
-import { path } from 'path';
-import parser from './parser';
-import compare from './compare';
+import * as fs from 'fs';
+import * as path from 'path';
+import parser from './parser.js';
+import compare from './compare.js';
 
 const gendiff = (file1, file2) => {
   const readFile = (file) => {
