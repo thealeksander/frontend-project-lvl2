@@ -1,12 +1,13 @@
+/* eslint-disable import/extensions */
 import { cwd } from 'node:process';
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import * as path from 'path';
 import parser from './parser.js';
 import compare from './compare.js';
 
 const gendiff = (file1, file2) => {
   const readFile = (file) => {
-    const absolutePath = path.resolve(file, cwd());
+    const absolutePath = path.resolve(cwd(), '__fixtures__', file);
     const data = fs.readFileSync(absolutePath);
     return data;
   };
