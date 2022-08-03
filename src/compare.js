@@ -2,33 +2,31 @@
 import _ from 'lodash';
 
 const compare = (obj1, obj2) => {
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const keys = [...keys1, ...keys2];
-  const uniqKeys = _.uniq(keys);
+  const keys = _.union([_.keys(obj1), _.keys(obj2)]);
+  
+  const result = keys
+    .map((key) => {
+      const valueObj1 = obj1[key];
+      const valueObj2 = obj2[key];
 
-  const result = uniqKeys.reduce((acc, key) => {
-    const valueObj1 = obj1[key];
-    const valueObj2 = obj2[key];
+      const keyObj1 = `- ${key}: ${valueObj1}\n`;
+      const keyObj2 = `+ ${key}: ${valueObj2}\n`;
+      const equalKeys = `  ${key}: ${valueObj1}\n`;
 
-    if (valueObj1 === valueObj2) {
-      acc += `  ${key}: ${valueObj1}\n`;
-      return acc;
-    }
+      if (key in obj1 && key in obj2) {
+        return (valueObj1 === valueObj2) ? equalKeys : keyObj1 + keyObj2;
+      };
 
-    if (valueObj2 === undefined) {
-      acc += `- ${key}: ${valueObj1}\n`;
-      return acc;
-    }
+      if (valueObj2 === undefined) {
+        return keyObj1;
+      };
 
-    if (valueObj1 === undefined) {
-      acc += `+ ${key}: ${valueObj2}\n`;
-      return acc;
-    }
-    acc += `- ${key}: ${valueObj1}\n`;
-    acc += `+ ${key}: ${valueObj2}\n`;
-    return acc;
-  }, '');
+      if (valueObj1 === undefined) {
+        return keyObj2;
+      };
+  })
+    .join(' ');
+
   return result;
 };
 
