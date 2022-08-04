@@ -16,7 +16,7 @@ const gendiff = (file1, file2) => {
   const objectFile1 = parser(getFormat(file1), readFile(file1));
   const objectFile2 = parser(getFormat(file2), readFile(file2));
 
-  return `{\n${compare(objectFile1, objectFile2)}}`;
+  return `{\n${compare(objectFile1, objectFile2)}\n}`;
 };
 
 export default gendiff;
