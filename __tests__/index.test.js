@@ -6,10 +6,10 @@ import { expect } from '@jest/globals';
 import { readFile } from 'fs';
 
 beforeAll(() => {
-    const _filename = fileURLToPath(import.meta.utl);
-    const _dirname = dirname(_filename);
-    const getFixturePath = (filename) => path.join(_dirname, '..', '__fixtures__', filename);
-    const readFile = (filename) => fs.readFile(getFixturePath(filename), 'utf8');
+    const __filename = fileURLToPath(import.meta.utl);
+    const __dirname = dirname(__filename);
+    const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+    const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 });
 
 test('gendiff\'s main flow ', () => {
