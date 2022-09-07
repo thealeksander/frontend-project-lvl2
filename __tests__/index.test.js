@@ -18,17 +18,31 @@ beforeAll(() => {
 
 describe('gendiff\'s main flow ', () => {
     test('with json format', () => {
-        const expected = readFile('result.txt');
+        const expected = readFile('result_stylish.txt');
         const filepath1 = getFixturePath('file1.json');
         const filepath2 = getFixturePath('file2.json');
-        const actual = gendiff(filepath1, filepath2);
+        const actual = gendiff(filepath1, filepath2, 'stylish');
         expect(actual).toBe(expected);
     });
     test('with yaml format', () => {
-        const expected = readFile('result.txt');
+        const expected = readFile('result_stylish.txt');
         const filepath1 = getFixturePath('file1.yml');
         const filepath2 = getFixturePath('file2.yml');
-        const actual = gendiff(filepath1, filepath2);
+        const actual = gendiff(filepath1, filepath2, 'stylish');
+        expect(actual).toBe(expected);
+    });
+    test('plain format', () => {
+        const expected = readFile('result_plain.txt');
+        const filepath1 = getFixturePath('file1.json');
+        const filepath2 = getFixturePath('file2.json');
+        const actual = gendiff(filepath1, filepath2, 'plain');
+        expect(actual).toBe(expected);
+    });
+    test('json format', () => {
+        const expected = readFile('result_json.txt');
+        const filepath1 = getFixturePath('file1.json');
+        const filepath2 = getFixturePath('file2.json');
+        const actual = gendiff(filepath1, filepath2, 'json');
         expect(actual).toBe(expected);
     });
 });
