@@ -4,7 +4,7 @@ const compare = (obj1, obj2) => {
   const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
 
   const diff = keys.map((key) => {
-    if (_.isObject(obj1[key] && _.isObject(obj2[key]))) {
+    if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
       return { key, children: compare(obj1[key], obj2[key]), type: 'nested' };
     }
     if (!Object.hasOwn(obj1, key)) {
