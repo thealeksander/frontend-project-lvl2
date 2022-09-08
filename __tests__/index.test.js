@@ -23,10 +23,10 @@ const variants = [
     ['file1.yml', 'file2.yml', 'plain'],
     ['file1.json', 'file2.json', 'json'],
     ['file1.yml', 'file2.yml', 'json'],
-  ];
+];
 
 test.each(variants)('genDiff-tests', (file1, file2, format = 'stylish') => {
-    const actual = genDiff(getFixturePath(file1), getFixturePath(file2), format);
+    const actual = gendiff(getFixturePath(file1), getFixturePath(file2), format);
     const expected = (formatter) => {
       switch (formatter) {
         case 'stylish':
