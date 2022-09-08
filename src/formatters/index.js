@@ -6,7 +6,7 @@ export default (data, format) => {
     case 'stylish':
       return stylish(data);
     case 'plain':
-      return plain(data); 
+      return plain(data);
     case 'json':
       return JSON.stringify(data);
     default:
