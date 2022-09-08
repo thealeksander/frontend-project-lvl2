@@ -16,26 +16,28 @@ beforeAll(() => {
     readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 });
 
-describe('gendiff\'s main flow ', () => {
-    test('with json format', () => {
-        const expected = readFile('result_stylish.txt');
-        const filepath1 = getFixturePath('file1.json');
-        const filepath2 = getFixturePath('file2.json');
-        const actual = gendiff(filepath1, filepath2);
-        expect(actual).toBe(expected);
-    });
-    test('with yaml format', () => {
-        const expected = readFile('result_stylish.txt');
-        const filepath1 = getFixturePath('file1.yml');
-        const filepath2 = getFixturePath('file2.yml');
-        const actual = gendiff(filepath1, filepath2);
-        expect(actual).toBe(expected);
-    });
-    test('plain format', () => {
-        const expected = readFile('result_plain.txt');
-        const filepath1 = getFixturePath('file1.json');
-        const filepath2 = getFixturePath('file2.json');
-        const actual = gendiff(filepath1, filepath2, 'plain');
-        expect(actual).toBe(expected);
-    });
-});
+const variants = [
+    ['file1.json', 'file2.json', 'stylish'],
+    ['file1.yml', 'file2.yml'],
+    ['file1.json', 'file2.json', 'plain'],
+    ['file1.yml', 'file2.yml', 'plain'],
+    ['file1.json', 'file2.json', 'json'],
+    ['file1.yml', 'file2.yml', 'json'],
+  ];
+
+test.each(variants)('genDiff-tests', (file1, file2, format = 'stylish') => {
+    const actual = genDiff(getFixturePath(file1), getFixturePath(file2), format);
+    const expected = (formatter) => {
+      switch (formatter) {
+        case 'stylish':
+          return readFile('result_stylish.txt');
+        case 'plain':
+          return readFile('result_plain.txt');
+        case 'json':
+          return readFile('result_json.txt');
+        default:
+          throw new Error(`Unknown type of format: ${formatter}`);
+      }
+    };
+    expect(actual).toBe(expected(format));
+  });
