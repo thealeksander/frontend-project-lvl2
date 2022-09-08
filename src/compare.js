@@ -15,7 +15,7 @@ const compare = (obj1, obj2) => {
     }
     if (obj1[key] !== obj2[key]) {
       return {
-        key, value1: obj1[key], value2: obj2[key], type: 'changed'
+        key, value1: obj1[key], value2: obj2[key], type: 'changed',
       };
     }
     return { key, value1: obj1[key], type: 'unchanged' };
