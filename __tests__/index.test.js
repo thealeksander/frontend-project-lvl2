@@ -31,4 +31,11 @@ describe('gendiff\'s main flow ', () => {
         const actual = gendiff(filepath1, filepath2);
         expect(actual).toBe(expected);
     });
+    test('plain format', () => {
+        const expected = readFile('result_plain.txt');
+        const filepath1 = getFixturePath('file1.json');
+        const filepath2 = getFixturePath('file2.json');
+        const actual = gendiff(filepath1, filepath2, 'plain');
+        expect(actual).toBe(expected);
+    });
 });
