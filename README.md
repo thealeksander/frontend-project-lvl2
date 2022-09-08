@@ -1,4 +1,4 @@
-# Gendiff.js
+# gendiff.js
 ____
 ### Hexlet tests and linter status:
 <sub>[![Actions Status](https://github.com/thealeksander/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/thealeksander/frontend-project-lvl2/actions)</sub>
