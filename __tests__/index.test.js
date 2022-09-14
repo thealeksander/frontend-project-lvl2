@@ -7,7 +7,7 @@ import gendiff from '../src/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
+const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8').trim();
 
 const variants = [
   ['file1.json', 'file2.json', 'stylish'],
@@ -22,7 +22,7 @@ const result_stylish = readFile('result_stylish.txt');
 const result_plain = readFile('result_plain.txt');
 const result_json = readFile('result_json.txt');
 
-test.each(variants)('genDiff-tests', (file1, file2, format = 'stylish') => {
+test.each(variants)('gendiff-tests', (file1, file2, format = 'stylish') => {
   const actual = gendiff(getFixturePath(file1), getFixturePath(file2), format);
   const expected = (formatter) => {
     switch (formatter) {
