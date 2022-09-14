@@ -8,8 +8,8 @@ const getData = (filepath) => readFileSync(path.resolve(`${process.cwd()}`, file
 const getExtension = (filepath) => path.extname(filepath).slice(1);
 
 const gendiff = (filePath1, filePath2, format = 'stylish') => {
-  const data1 = parse(getData(filePath1), getExtension(filepath1));
-  const data2 = parse(getData(filePath2), getExtension(filepath2));
+  const data1 = parse(getData(filePath1), getExtension(filePath1));
+  const data2 = parse(getData(filePath2), getExtension(filePath2));
   return getdiff(buildTree(data1, data2), format);
 };
 
