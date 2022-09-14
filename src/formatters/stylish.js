@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 const stepIndent = 4;
-const getIndent = (count) => ' '.repeat(count * stepIndent);
+const getIndent = (depth) => ' '.repeat(depth * stepIndent);
 
 const getValue = (node, depth) => {
   if (!_.isObject(node)) {
