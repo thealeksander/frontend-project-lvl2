@@ -2,7 +2,7 @@ import { expect } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import * as fs from 'node:fs';
-import gendiff from '../src/index.js';
+import formatName from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,16 +18,20 @@ const variants = [
   ['file1.yml', 'file2.yml', 'json'],
 ];
 
+const result_stylish = readFile('result_stylish.txt');
+const result_plain = readFile('result_plain.txt');
+const result_json = readFile('result_json.txt');
+
 test.each(variants)('genDiff-tests', (file1, file2, format = 'stylish') => {
-  const actual = gendiff(getFixturePath(file1), getFixturePath(file2), format);
+  const actual = formatName(getFixturePath(file1), getFixturePath(file2), format);
   const expected = (formatter) => {
     switch (formatter) {
       case 'stylish':
-        return readFile('result_stylish.txt');
+        return result_stylish;
       case 'plain':
-        return readFile('result_plain.txt');
+        return result_plain;
       case 'json':
-        return readFile('result_json.txt');
+        return result_json;
       default:
         throw new Error(`Unknown type of format: ${formatter}`);
     }
