@@ -33,7 +33,6 @@ export default (tree) => {
       });
 
     return [...lines]
-      .filter(Boolean)
       .join('\n');
   };
 
