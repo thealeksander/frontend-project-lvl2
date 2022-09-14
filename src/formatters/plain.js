@@ -13,7 +13,7 @@ const getFormattedValue = (value) => {
 export default (tree) => {
   const iter = (node, path) => {
     const lines = node
-      .map((diff) => {
+      .flatMap((diff) => {
         const keyPath = (path === '' ? `${diff.key}` : `${path}.${diff.key}`);
 
         switch (diff.type) {
@@ -26,7 +26,7 @@ export default (tree) => {
           case 'changed':
             return `Property '${keyPath}' was updated. From ${getFormattedValue(diff.value1)} to ${getFormattedValue(diff.value2)}`;
           case 'unchanged':
-            return null;
+            return [];
           default:
             throw new Error(`Unknown type of diff: ${diff.type}`);
         }

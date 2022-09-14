@@ -2,7 +2,7 @@ import { expect } from '@jest/globals';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import * as fs from 'node:fs';
-import formatName from '../src/index.js';
+import gendiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -23,7 +23,7 @@ const result_plain = readFile('result_plain.txt');
 const result_json = readFile('result_json.txt');
 
 test.each(variants)('genDiff-tests', (file1, file2, format = 'stylish') => {
-  const actual = formatName(getFixturePath(file1), getFixturePath(file2), format);
+  const actual = gendiff(getFixturePath(file1), getFixturePath(file2), format);
   const expected = (formatter) => {
     switch (formatter) {
       case 'stylish':
