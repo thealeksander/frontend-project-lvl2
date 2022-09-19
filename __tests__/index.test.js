@@ -22,8 +22,8 @@ const resultStylish = readFile('result_stylish.txt');
 const resultPlain = readFile('result_plain.txt');
 const resultJson = readFile('result_json.txt');
 
-test.each(variants)('gendiff-tests', (file1, file2, format = 'stylish') => {
-  const actual = gendiff(getFixturePath(file1), getFixturePath(file2), format);
+test.each(variants)('gendiff-tests', (file1, file2, type = 'stylish') => {
+  const actual = gendiff(getFixturePath(file1), getFixturePath(file2), type);
   const expected = (formatter) => {
     switch (formatter) {
       case 'stylish':
@@ -36,5 +36,5 @@ test.each(variants)('gendiff-tests', (file1, file2, format = 'stylish') => {
         throw new Error(`Unknown type of format: ${formatter}`);
     }
   };
-  expect(actual).toBe(expected(format));
+  expect(actual).toBe(expected(type));
 });
