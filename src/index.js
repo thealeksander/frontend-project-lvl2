@@ -4,7 +4,7 @@ import parse from './parser.js';
 import buildTree from './buildTree.js';
 import format from './formatters/index.js';
 
-const getData = (filepath) => readFileSync(path.resolve(process.cwd(), filepath));
+const getData = (filepath) => readFileSync(path.resolve(process.cwd(), '__fixtures__', filepath));
 const getType = (filepath) => path.extname(filepath).slice(1);
 
 const gendiff = (filePath1, filePath2, type = 'stylish') => {
