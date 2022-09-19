@@ -18,20 +18,20 @@ const variants = [
   ['file1.yml', 'file2.yml', 'json'],
 ];
 
-const result_stylish = readFile('result_stylish.txt');
-const result_plain = readFile('result_plain.txt');
-const result_json = readFile('result_json.txt');
+const resultStylish = readFile('result_stylish.txt');
+const resultPlain = readFile('result_plain.txt');
+const resultJson = readFile('result_json.txt');
 
 test.each(variants)('gendiff-tests', (file1, file2, format = 'stylish') => {
   const actual = gendiff(getFixturePath(file1), getFixturePath(file2), format);
   const expected = (formatter) => {
     switch (formatter) {
       case 'stylish':
-        return result_stylish;
+        return resultStylish;
       case 'plain':
-        return result_plain;
+        return resultPlain;
       case 'json':
-        return result_json;
+        return resultJson;
       default:
         throw new Error(`Unknown type of format: ${formatter}`);
     }
