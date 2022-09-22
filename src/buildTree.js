@@ -1,24 +1,24 @@
 import _ from 'lodash';
 
-const buildTree = (obj1, obj2) => {
-  const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
+const buildTree = (data1, data2) => {
+  const keys = _.sortBy(_.union(_.keys(data1), _.keys(data2)));
 
   const diff = keys.map((key) => {
-    if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
-      return { key, children: buildTree(obj1[key], obj2[key]), type: 'nested' };
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return { key, children: buildTree(data1[key], data2[key]), type: 'nested' };
     }
-    if (!Object.hasOwn(obj1, key)) {
-      return { key, value2: obj2[key], type: 'added' };
+    if (!Object.hasOwn(data1, key)) {
+      return { key, value2: data2[key], type: 'added' };
     }
-    if (!Object.hasOwn(obj2, key)) {
-      return { key, value1: obj1[key], type: 'deleted' };
+    if (!Object.hasOwn(data2, key)) {
+      return { key, value1: data1[key], type: 'deleted' };
     }
-    if (obj1[key] !== obj2[key]) {
+    if (data1[key] !== data2[key]) {
       return {
-        key, value1: obj1[key], value2: obj2[key], type: 'changed',
+        key, value1: data1[key], value2: data2[key], type: 'changed',
       };
     }
-    return { key, value1: obj1[key], type: 'unchanged' };
+    return { key, value1: data1[key], type: 'unchanged' };
   });
 
   return diff;

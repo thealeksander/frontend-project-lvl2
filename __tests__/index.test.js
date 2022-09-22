@@ -22,7 +22,7 @@ const resultStylish = readFile('result_stylish.txt');
 const resultPlain = readFile('result_plain.txt');
 const resultJson = readFile('result_json.txt');
 
-test.each(variants)('gendiff-tests', (file1, file2, type = 'stylish') => {
+test.each(variants)('gendiff-tests', (file1, file2) => {
   const actual = gendiff(getFixturePath(file1), getFixturePath(file2), type);
   const expected = (formatter) => {
     switch (formatter) {
