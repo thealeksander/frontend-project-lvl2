@@ -8,6 +8,13 @@ ____
 [![Actions Status](https://github.com/thealeksander/frontend-project-lvl2/workflows/NodeCI/badge.svg)](https://github.com/thealeksander/frontend-project-lvl2/actions)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/714f8981510aadc4f66e/test_coverage)](https://codeclimate.com/github/thealeksander/frontend-project-lvl2/test_coverage)
 
+### Installation
+```
+    To install "genDiff.js" locally:
+    git clone https://github.com/thealeksander/frontend-project-lvl2.git
+    cd frontend-project-lvl2
+    make install
+```
 ### Examples
 
 #### Comparison JSON & YAML plain files in 'stylish'
