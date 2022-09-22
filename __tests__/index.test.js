@@ -10,12 +10,12 @@ const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', 
 const readFile = (filename) => fs.readFileSync(getFixturePath(filename), 'utf-8');
 
 const variants = [
-  { file1: 'file1.json',file2: 'file2.json', type: 'stylish'},
-  { file1: 'file1.yml', file2: 'file2.yml'},
-  { file1: 'file1.json',file2: 'file2.json', type: 'plain'},
-  { file1: 'file1.yml', file2: 'file2.yml', type: 'plain'},
-  { file1: 'file1.json',file2: 'file2.json', type: 'json'},
-  { file1: 'file1.yml', file2: 'file2.yml', type: 'json'},
+  { file1: 'file1.json', file2: 'file2.json', type: 'stylish' },
+  { file1: 'file1.yml', file2: 'file2.yml' },
+  { file1: 'file1.json', file2: 'file2.json', type: 'plain' },
+  { file1: 'file1.yml', file2: 'file2.yml', type: 'plain' },
+  { file1: 'file1.json', file2: 'file2.json', type: 'json' },
+  { file1: 'file1.yml', file2: 'file2.yml', type: 'json' },
 ];
 
 const resultStylish = readFile('result_stylish.txt');
